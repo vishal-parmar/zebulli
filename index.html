@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zebulli Wellness — Your Partner in Healthy Living</title>
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:       #2e7d4f;
+      --green-light: #4caf76;
+      --green-pale:  #e8f5ee;
+      --gold:        #c8973a;
+      --dark:        #1a2a1e;
+      --text:        #333d38;
+      --muted:       #6b7c72;
+      --white:       #ffffff;
+      --border:      #d4e6da;
+      --radius:      14px;
+      --shadow:      0 4px 24px rgba(46,125,79,.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+    }
+    img { max-width: 100%; display: block; }
+    a  { color: inherit; text-decoration: none; }
+
+    /* ─── Utility ───────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.25;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-top: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: transform .18s, box-shadow .18s, background .18s;
+      border: 2px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    .btn-primary  { background: var(--green); color: var(--white); }
+    .btn-outline  { background: transparent; border-color: var(--green); color: var(--green); }
+    .btn-outline:hover { background: var(--green); color: var(--white); }
+
+    /* ─── Navigation ────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.4rem;
+    }
+    .logo-text strong {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .logo-text span {
+      font-size: .7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: color .18s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta { display: flex; gap: 12px; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0d2e1a 0%, #1a4a2a 50%, #2e7d4f 100%);
+      color: #fff;
+      padding: 100px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    }
+    .hero-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-bottom: 24px;
+    }
+    .hero-badge span { color: var(--gold); }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: .85;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-graphic {
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.15) 0%, transparent 60%),
+                  rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-graphic::before {
+      content: '🌿';
+      font-size: 6rem;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,.3));
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+    .hero-stat strong {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .hero-stat span { font-size: .8rem; opacity: .7; }
+
+    /* ─── Trust Bar ─────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--green-pale);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      overflow: hidden;
+    }
+    .trust-bar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--green);
+      white-space: nowrap;
+    }
+    .trust-item .icon { font-size: 1.1rem; }
+
+    /* ─── About ─────────────────────────────────────────────── */
+    .about { padding: 90px 0; }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--green-pale) 0%, #d0eedd 100%);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      background: rgba(46,125,79,.1);
+      border-radius: 50%;
+    }
+    .about-text .section-subtitle { margin-bottom: 24px; }
+    .about-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .value-card {
+      background: var(--green-pale);
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid var(--border);
+    }
+    .value-card .icon { font-size: 1.4rem; margin-bottom: 8px; }
+    .value-card h4 { font-size: .9rem; font-weight: 700; color: var(--dark); }
+    .value-card p  { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+
+    /* ─── Products ──────────────────────────────────────────── */
+    .products {
+      background: #f7fbf9;
+      padding: 90px 0;
+    }
+    .products-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .products-header .section-subtitle { margin: 10px auto 0; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(46,125,79,.18);
+    }
+    .product-card-header {
+      padding: 32px 28px 24px;
+      position: relative;
+    }
+    .product-emoji {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--green);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+      letter-spacing: .06em;
+    }
+    .product-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .product-tagline {
+      font-size: .85rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .product-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 28px;
+    }
+    .product-benefits {
+      padding: 20px 28px 28px;
+      flex: 1;
+    }
+    .product-benefits h4 {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .benefit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .benefit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: .87rem;
+      color: var(--text);
+    }
+    .benefit-list li::before {
+      content: '✓';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      background: var(--green-pale);
+      color: var(--green);
+      border-radius: 50%;
+      font-size: .65rem;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+    .product-footer {
+      padding: 16px 28px 24px;
+    }
+    .product-footer .btn { width: 100%; justify-content: center; }
+
+    /* ─── Product Category Pills ────────────────────────────── */
+    .category-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .pill {
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: all .2s;
+      background: var(--white);
+    }
+    .pill.active, .pill:hover {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    /* ─── Why Choose Us ─────────────────────────────────────── */
+    .why { padding: 90px 0; }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .why-text .section-subtitle { margin-bottom: 32px; }
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .feature-icon {
+      min-width: 48px;
+      height: 48px;
+      background: var(--green-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    .feature-item h4 { font-weight: 700; color: var(--dark); }
+    .feature-item p  { font-size: .88rem; color: var(--muted); margin-top: 2px; }
+    .why-graphic {
+      background: linear-gradient(135deg, var(--dark) 0%, #2e7d4f 100%);
+      border-radius: 24px;
+      padding: 48px 40px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-graphic::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,.05);
+      border-radius: 50%;
+    }
+    .why-graphic h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+    .why-graphic h3 span { color: var(--gold); }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      position: relative;
+    }
+    .stat-box {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .stat-box strong {
+      display: block;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .stat-box span { font-size: .82rem; opacity: .75; }
+
+    /* ─── Testimonials ──────────────────────────────────────── */
+    .testimonials {
+      background: var(--green-pale);
+      padding: 90px 0;
+    }
+    .testimonials-header { text-align: center; margin-bottom: 48px; }
+    .testimonials-header .section-subtitle { margin: 10px auto 0; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .testi-stars { color: var(--gold); font-size: 1rem; margin-bottom: 14px; }
+    .testi-text { font-size: .92rem; color: var(--text); line-height: 1.7; margin-bottom: 20px; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .testi-author-info strong { display: block; font-size: .9rem; color: var(--dark); }
+    .testi-author-info span  { font-size: .78rem; color: var(--muted); }
+
+    /* ─── CTA Banner ─────────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, #0d2e1a 0%, var(--green) 100%);
+      padding: 80px 24px;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-banner h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .cta-banner h2 span { color: var(--gold); }
+    .cta-banner p {
+      font-size: 1.05rem;
+      opacity: .85;
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { background: var(--gold); color: #fff; border-color: var(--gold); }
+    .btn-gold:hover { background: #b3831f; }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: #fff;
+      padding: 64px 0 32px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo-text strong { color: #fff; }
+    .footer-brand .logo-text span  { color: rgba(255,255,255,.5); }
+    .footer-desc {
+      font-size: .88rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .social-link {
+      width: 38px;
+      height: 38px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background .2s;
+    }
+    .social-link:hover { background: var(--green); }
+    .footer-col h4 {
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: .88rem;
+      color: rgba(255,255,255,.7);
+      transition: color .18s;
+    }
+    .footer-links a:hover { color: var(--green-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.45); }
+
+    /* ─── Mobile Responsive ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner      { grid-template-columns: 1fr; }
+      .hero-visual     { display: none; }
+      .about-inner     { grid-template-columns: 1fr; }
+      .why-inner       { grid-template-columns: 1fr; }
+      .footer-inner    { grid-template-columns: 1fr 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger       { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .footer-inner    { grid-template-columns: 1fr; }
+      .about-values    { grid-template-columns: 1fr; }
+      .hero            { padding: 70px 20px 60px; }
+      .about-visual    { padding: 40px; font-size: 4rem; }
+      .stat-grid       { grid-template-columns: 1fr; }
+      .hero-stats      { gap: 20px; }
+    }
+
+    /* ─── Mobile Menu ────────────────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      z-index: 1000;
+      padding: 24px;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .mobile-nav-links a {
+      display: block;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-nav-links a:hover { color: var(--green); }
+    .mobile-cta { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+
+    /* ─── Scroll animations ──────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─────────────────────────────────────────── -->
+<header>
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon">🌿</div>
+      <div class="logo-text">
+        <strong>Zebulli</strong>
+        <span>Wellness</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#products" class="btn btn-outline" style="padding:10px 20px; font-size:.85rem;">Browse Products</a>
+      <a href="#contact" class="btn btn-primary" style="padding:10px 20px; font-size:.85rem;">Contact Us</a>
+    </div>
+    <button class="hamburger" onclick="openMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <div class="logo">
+      <div class="logo-icon">🌿</div>
+      <div class="logo-text">
+        <strong>Zebulli</strong>
+        <span>Wellness</span>
+      </div>
+    </div>
+    <button class="close-btn" onclick="closeMenu()" aria-label="Close menu">×</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="#about"        onclick="closeMenu()">About</a></li>
+    <li><a href="#products"     onclick="closeMenu()">Products</a></li>
+    <li><a href="#why-us"       onclick="closeMenu()">Why Us</a></li>
+    <li><a href="#testimonials" onclick="closeMenu()">Reviews</a></li>
+    <li><a href="#contact"      onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <div class="mobile-cta">
+    <a href="#products" class="btn btn-primary" onclick="closeMenu()">Browse Products</a>
+    <a href="#contact"  class="btn btn-outline"  onclick="closeMenu()">Contact Us</a>
+  </div>
+</div>
+
+<!-- ─── Hero ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <span>★</span> Premium Nutraceutical Range
+      </div>
+      <h1>Your Partner in<br><em>Healthy Living</em></h1>
+      <p>Science-backed supplements crafted to support joints, bones, and digestion — so you can move, live, and thrive with confidence every day.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary" style="background:#fff;color:var(--green);">Explore Products</a>
+        <a href="#about"    class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>5+</strong><span>Products</span></div>
+        <div class="hero-stat"><strong>100%</strong><span>Natural</span></div>
+        <div class="hero-stat"><strong>GMP</strong><span>Certified</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-graphic"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Trust Bar ─────────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="icon">🏭</span> GMP Certified Manufacturing</div>
+    <div class="trust-item"><span class="icon">🌿</span> Natural Ingredients</div>
+    <div class="trust-item"><span class="icon">🔬</span> Science-Backed Formula</div>
+    <div class="trust-item"><span class="icon">🚚</span> Pan-India Delivery</div>
+    <div class="trust-item"><span class="icon">✅</span> Quality Tested</div>
+  </div>
+</div>
+
+<!-- ─── About ─────────────────────────────────────────────── -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-visual fade-up">🌿</div>
+      <div class="about-text fade-up">
+        <div class="section-tag">About Zebulli</div>
+        <h2 class="section-title">Wellness Rooted in Nature &amp; Science</h2>
+        <p class="section-subtitle">
+          Zebulli Wellness is committed to empowering people with premium nutraceutical solutions. We combine the wisdom of natural ingredients with modern science to create supplements that truly make a difference in daily life.
+        </p>
+        <p class="section-subtitle">
+          Whether it's supporting your joints, strengthening your bones, or improving digestion — our products are designed to help you live an active, comfortable, and fulfilling life at every age.
+        </p>
+        <div class="about-values">
+          <div class="value-card">
+            <div class="icon">🔬</div>
+            <h4>Research-Driven</h4>
+            <p>Every formulation is backed by scientific evidence.</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">🌱</div>
+            <h4>Natural Ingredients</h4>
+            <p>Carefully selected from the best natural sources.</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">🏆</div>
+            <h4>Quality Assured</h4>
+            <p>Manufactured in GMP-certified facilities.</p>
+          </div>
+          <div class="value-card">
+            <div class="icon">❤️</div>
+            <h4>Customer First</h4>
+            <p>Your health and satisfaction is our priority.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Products ──────────────────────────────────────────── -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="products-header fade-up">
+      <div class="section-tag">Our Range</div>
+      <h2 class="section-title">Premium Nutraceutical Products</h2>
+      <p class="section-subtitle">Targeted solutions for joint health, bone strength, and digestive wellness — crafted for every stage of life.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Active Ortho + -->
+      <div class="product-card fade-up">
+        <div class="product-card-header">
+          <div class="product-emoji">🦴</div>
+          <span class="product-badge">Joint Support</span>
+          <h3 class="product-name">Active Ortho+</h3>
+          <p class="product-tagline">Advanced Orthopaedic Support Formula</p>
+        </div>
+        <div class="product-divider"></div>
+        <div class="product-benefits">
+          <h4>Key Benefits</h4>
+          <ul class="benefit-list">
+            <li>Supports smooth and comfortable joint movement</li>
+            <li>Helps reduce joint stiffness and everyday discomfort</li>
+            <li>Promotes flexibility for an active lifestyle</li>
+            <li>Enhances mobility for walking, bending &amp; daily activities</li>
+            <li>Supports long-term joint strength and function</li>
+            <li>Aids in maintaining an active, pain-free routine</li>
+          </ul>
+        </div>
+        <div class="product-footer">
+          <a href="#contact" class="btn btn-primary">Enquire Now</a>
+        </div>
+      </div>
+
+      <!-- Active Flex+ -->
+      <div class="product-card fade-up">
+        <div class="product-card-header">
+          <div class="product-emoji">💪</div>
+          <span class="product-badge">Flexibility</span>
+          <h3 class="product-name">Active Flex+</h3>
+          <p class="product-tagline">Complete Flexibility &amp; Bone Strength Formula</p>
+        </div>
+        <div class="product-divider"></div>
+        <div class="product-benefits">
+          <h4>Key Benefits</h4>
+          <ul class="benefit-list">
+            <li>Daily support for strong, healthy bones</li>
+            <li>Helps relieve joint pain and stiffness</li>
+            <li>Improves body flexibility and movement</li>
+            <li>Builds stamina for long-lasting mobility</li>
+            <li>Protects against age-related bone weakness</li>
+            <li>Makes daily activities easier and boosts confidence</li>
+          </ul>
+        </div>
+        <div class="product-footer">
+          <a href="#contact" class="btn btn-primary">Enquire Now</a>
+        </div>
+      </div>
+
+      <!-- Active Joint + -->
+      <div class="product-card fade-up">
+        <div class="product-card-header">
+          <div class="product-emoji">🔗</div>
+          <span class="product-badge">Joint Health</span>
+          <h3 class="product-name">Active Joint+</h3>
+          <p class="product-tagline">Comprehensive Joint Wellness Formula</p>
+        </div>
+        <div class="product-divider"></div>
+        <div class="product-benefits">
+          <h4>Key Benefits</h4>
+          <ul class="benefit-list">
+            <li>Helps reduce joint inflammation and discomfort</li>
+            <li>Supports healthy cartilage and connective tissues</li>
+            <li>Improves joint flexibility and smooth movement</li>
+            <li>Promotes strength and stability of joints</li>
+            <li>Helps ease muscular pain and stiffness</li>
+            <li>Aids in faster recovery from joint stress and strain</li>
+          </ul>
+        </div>
+        <div class="product-footer">
+          <a href="#contact" class="btn btn-primary">Enquire Now</a>
+        </div>
+      </div>
+
+      <!-- Active Cal + D3 -->
+      <div class="product-card fade-up">
+        <div class="product-card-header">
+          <div class="product-emoji">☀️</div>
+          <span class="product-badge">Bone Strength</span>
+          <h3 class="product-name">Active Cal+D3</h3>
+          <p class="product-tagline">Calcium &amp; Vitamin D3 Bone Health Formula</p>
+        </div>
+        <div class="product-divider"></div>
+        <div class="product-benefits">
+          <h4>Key Benefits</h4>
+          <ul class="benefit-list">
+            <li>Supports strong and healthy bones</li>
+            <li>Helps improve bone density and strength</li>
+            <li>Enhances absorption of essential bone nutrients</li>
+            <li>Reduces the risk of bone weakness and fragility</li>
+            <li>Supports muscle function and strength</li>
+            <li>Promotes overall skeletal health with aging</li>
+          </ul>
+        </div>
+        <div class="product-footer">
+          <a href="#contact" class="btn btn-primary">Enquire Now</a>
+        </div>
+      </div>
+
+      <!-- Active Digestive + -->
+      <div class="product-card fade-up">
+        <div class="product-card-header">
+          <div class="product-emoji">🌿</div>
+          <span class="product-badge">Digestive Health</span>
+          <h3 class="product-name">Active Digestive+</h3>
+          <p class="product-tagline">Natural Digestive Wellness Formula</p>
+        </div>
+        <div class="product-divider"></div>
+        <div class="product-benefits">
+          <h4>Key Benefits</h4>
+          <ul class="benefit-list">
+            <li>Helps relieve constipation naturally</li>
+            <li>Reduces gas and acidity for better comfort</li>
+            <li>Supports smooth and regular digestion</li>
+            <li>Promotes a lighter, less bloated feeling</li>
+            <li>Aids in maintaining overall gut health</li>
+            <li>Provides gentle and effective digestive support</li>
+          </ul>
+        </div>
+        <div class="product-footer">
+          <a href="#contact" class="btn btn-primary">Enquire Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Why Choose Us ─────────────────────────────────────── -->
+<section class="why" id="why-us">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-text fade-up">
+        <div class="section-tag">Why Zebulli</div>
+        <h2 class="section-title">Built on Trust, Backed by Science</h2>
+        <p class="section-subtitle">We take your health seriously. Every product is developed with the highest standards of quality, safety, and efficacy.</p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">🔬</div>
+            <div>
+              <h4>Clinically Researched Formulas</h4>
+              <p>Each ingredient is chosen based on published scientific research and clinical evidence.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🏭</div>
+            <div>
+              <h4>GMP-Certified Manufacturing</h4>
+              <p>Produced in Good Manufacturing Practice certified facilities for consistent purity and potency.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌿</div>
+            <div>
+              <h4>Natural &amp; Safe Ingredients</h4>
+              <p>No harmful additives. We use clean, safe, and naturally sourced active ingredients.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🤝</div>
+            <div>
+              <h4>Trusted by Customers Across India</h4>
+              <p>Thousands of satisfied customers rely on Zebulli products for their daily wellness needs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-graphic fade-up">
+        <h3>Our Commitment to <span>Excellence</span></h3>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <strong>5+</strong>
+            <span>Specialized Products</span>
+          </div>
+          <div class="stat-box">
+            <strong>100%</strong>
+            <span>Natural Formulas</span>
+          </div>
+          <div class="stat-box">
+            <strong>GMP</strong>
+            <span>Certified Facility</span>
+          </div>
+          <div class="stat-box">
+            <strong>∞</strong>
+            <span>Customer Trust</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Testimonials ──────────────────────────────────────── -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header fade-up">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-subtitle">Real stories from real people who have made Zebulli part of their wellness journey.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Active Ortho+ has genuinely changed my life. I was struggling with knee pain for years. After just 6 weeks of using it, I can walk comfortably again. Highly recommended!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--green);">R</div>
+          <div class="testi-author-info">
+            <strong>Ramesh P.</strong>
+            <span>Joint Pain Patient · Mumbai</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Active Cal+D3 is now a daily essential for me. As someone who doesn't get much sun exposure, my bone density has improved significantly. Great product from Zebulli!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--gold);">S</div>
+          <div class="testi-author-info">
+            <strong>Sunita M.</strong>
+            <span>Working Professional · Bangalore</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Active Digestive+ works wonders. I had chronic bloating and acidity issues. This supplement fixed my gut health within a month. Natural and effective — love it!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#6c5ce7;">P</div>
+          <div class="testi-author-info">
+            <strong>Priya K.</strong>
+            <span>Homemaker · Delhi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA Banner ─────────────────────────────────────────── -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Start Your Wellness Journey <span>Today</span></h2>
+    <p>Join thousands of satisfied customers who trust Zebulli for their daily health and wellness needs.</p>
+    <div class="cta-actions">
+      <a href="#products" class="btn btn-gold">Shop Products</a>
+      <a href="#contact"  class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Contact / Footer ──────────────────────────────────── -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">🌿</div>
+          <div class="logo-text">
+            <strong>Zebulli</strong>
+            <span>Wellness</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Your Partner in Healthy Living. Premium nutraceutical solutions crafted to support your joints, bones, and overall wellness.
+        </p>
+        <div class="social-links">
+          <a href="https://instagram.com/zebulli_wellness_" target="_blank" rel="noopener" class="social-link" title="Instagram">📸</a>
+          <a href="https://facebook.com/zebulliwellness"    target="_blank" rel="noopener" class="social-link" title="Facebook">📘</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul class="footer-links">
+          <li><a href="#products">Active Ortho+</a></li>
+          <li><a href="#products">Active Flex+</a></li>
+          <li><a href="#products">Active Joint+</a></li>
+          <li><a href="#products">Active Cal+D3</a></li>
+          <li><a href="#products">Active Digestive+</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#why-us">Why Zebulli</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href="https://instagram.com/zebulli_wellness_" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://facebook.com/zebulliwellness" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+        <div style="margin-top:24px;">
+          <p style="font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:8px;">Follow us for health tips</p>
+          <a href="https://instagram.com/zebulli_wellness_" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--green-light);">@zebulli_wellness_</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Zebulli Wellness. All rights reserved.</p>
+      <p>Premium Nutraceutical Range</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── Scripts ───────────────────────────────────────────── -->
+<script>
+  // Mobile menu
+  function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // Scroll-triggered fade-up
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
