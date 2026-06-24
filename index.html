@@ -8,17 +8,17 @@
     /* ─── Reset & Base ─────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --green:       #2e7d4f;
-      --green-light: #4caf76;
-      --green-pale:  #e8f5ee;
+      --green:       #c8973a;
+      --green-light: #e0b050;
+      --green-pale:  #fdf8ec;
       --gold:        #c8973a;
-      --dark:        #1a2a1e;
-      --text:        #333d38;
-      --muted:       #6b7c72;
+      --dark:        #0d0d0d;
+      --text:        #1a1a1a;
+      --muted:       #6b6b6b;
       --white:       #ffffff;
-      --border:      #d4e6da;
+      --border:      #e8d9b0;
       --radius:      14px;
-      --shadow:      0 4px 24px rgba(46,125,79,.12);
+      --shadow:      0 4px 24px rgba(200,151,58,.15);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -93,30 +93,23 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .logo-icon {
-      width: 42px;
-      height: 42px;
-      background: var(--green);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 1.4rem;
-    }
-    .logo-text strong {
+    .logo-img {
+      height: 56px;
+      width: auto;
       display: block;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--dark);
+      border: none;
+      outline: none;
     }
-    .logo-text span {
-      font-size: .7rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .1em;
+    .logo-img-white {
+      height: 56px;
+      width: auto;
+      display: block;
+      border: none;
+      outline: none;
+      filter: brightness(0) invert(1);
     }
     .nav-links {
       display: flex;
@@ -152,7 +145,7 @@
 
     /* ─── Hero ──────────────────────────────────────────────── */
     .hero {
-      background: linear-gradient(135deg, #0d2e1a 0%, #1a4a2a 50%, #2e7d4f 100%);
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2520 100%);
       color: #fff;
       padding: 100px 24px 80px;
       position: relative;
@@ -212,20 +205,112 @@
     .hero-graphic {
       width: 340px;
       height: 340px;
-      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.15) 0%, transparent 60%),
-                  rgba(255,255,255,.06);
+      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.12) 0%, transparent 60%),
+                  rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      overflow: visible;
     }
+
+    /* rotating outer dashed ring */
     .hero-graphic::before {
-      content: '🌿';
-      font-size: 6rem;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,.3));
+      content: '';
+      position: absolute;
+      width: 370px;
+      height: 370px;
+      border-radius: 50%;
+      border: 2px dashed rgba(200,151,58,.35);
+      animation: ring-spin 18s linear infinite;
     }
+    @keyframes ring-spin { to { transform: rotate(360deg); } }
+
+    /* pulsing inner glow */
+    .hero-graphic::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,151,58,.12) 0%, transparent 70%);
+      animation: glow-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { transform: scale(1);   opacity: .6; }
+      50%       { transform: scale(1.2); opacity: 1;  }
+    }
+
+    /* centre content */
+    .nutra-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+    .nutra-icon {
+      font-size: 5rem;
+      filter: drop-shadow(0 4px 20px rgba(0,0,0,.4));
+      animation: float-icon 3s ease-in-out infinite;
+    }
+    @keyframes float-icon {
+      0%, 100% { transform: translateY(0);    }
+      50%       { transform: translateY(-12px); }
+    }
+    .nutra-label {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .3em;
+      color: var(--gold);
+      animation: label-glow 2.5s ease-in-out infinite;
+    }
+    @keyframes label-glow {
+      0%, 100% { opacity: .65; text-shadow: none; }
+      50%       { opacity: 1;   text-shadow: 0 0 18px rgba(200,151,58,.9); }
+    }
+
+    /* orbiting dots */
+    .nutra-orbit {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      animation: orbit-spin 10s linear infinite;
+      z-index: 1;
+    }
+    .nutra-orbit-slow {
+      animation-duration: 16s;
+      animation-direction: reverse;
+      width: 260px;
+      height: 260px;
+    }
+    @keyframes orbit-spin { to { transform: rotate(360deg); } }
+    .nutra-dot {
+      position: absolute;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+    }
+    .nutra-dot-lg {
+      width: 12px; height: 12px;
+      margin: -6px;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(200,151,58,.8);
+    }
+    .nutra-dot-sm {
+      width: 7px; height: 7px;
+      margin: -3.5px;
+      background: rgba(255,255,255,.7);
+      box-shadow: 0 0 6px rgba(255,255,255,.5);
+    }
+    .nutra-dot:nth-child(1) { transform: rotate(0deg)   translateX(150px); }
+    .nutra-dot:nth-child(2) { transform: rotate(120deg) translateX(150px); }
+    .nutra-dot:nth-child(3) { transform: rotate(240deg) translateX(150px); }
+    .nutra-orbit-slow .nutra-dot:nth-child(1) { transform: rotate(60deg)  translateX(130px); }
+    .nutra-orbit-slow .nutra-dot:nth-child(2) { transform: rotate(180deg) translateX(130px); }
+    .nutra-orbit-slow .nutra-dot:nth-child(3) { transform: rotate(300deg) translateX(130px); }
     .hero-stats {
       display: flex;
       gap: 32px;
@@ -277,7 +362,7 @@
       align-items: center;
     }
     .about-visual {
-      background: linear-gradient(135deg, var(--green-pale) 0%, #d0eedd 100%);
+      background: linear-gradient(135deg, var(--green-pale) 0%, #f5e8c0 100%);
       border-radius: 24px;
       padding: 60px;
       text-align: center;
@@ -292,7 +377,7 @@
       right: -20px;
       width: 120px;
       height: 120px;
-      background: rgba(46,125,79,.1);
+      background: rgba(200,151,58,.1);
       border-radius: 50%;
     }
     .about-text .section-subtitle { margin-bottom: 24px; }
@@ -314,7 +399,7 @@
 
     /* ─── Products ──────────────────────────────────────────── */
     .products {
-      background: #f7fbf9;
+      background: #f8f5ee;
       padding: 90px 0;
     }
     .products-header {
@@ -348,6 +433,13 @@
     .product-emoji {
       font-size: 2.4rem;
       margin-bottom: 14px;
+    }
+    .product-img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 14px;
+      border-radius: 10px;
     }
     .product-badge {
       position: absolute;
@@ -477,7 +569,8 @@
     .feature-item h4 { font-weight: 700; color: var(--dark); }
     .feature-item p  { font-size: .88rem; color: var(--muted); margin-top: 2px; }
     .why-graphic {
-      background: linear-gradient(135deg, var(--dark) 0%, #2e7d4f 100%);
+      background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+      border: 1px solid rgba(200,151,58,.35);
       border-radius: 24px;
       padding: 48px 40px;
       color: #fff;
@@ -507,8 +600,8 @@
       position: relative;
     }
     .stat-box {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(200,151,58,.08);
+      border: 1px solid rgba(200,151,58,.25);
       border-radius: 14px;
       padding: 20px;
     }
@@ -558,7 +651,7 @@
 
     /* ─── CTA Banner ─────────────────────────────────────────── */
     .cta-banner {
-      background: linear-gradient(135deg, #0d2e1a 0%, var(--green) 100%);
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
       padding: 80px 24px;
       text-align: center;
       color: #fff;
@@ -613,8 +706,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      transition: background .2s;
+      color: rgba(255,255,255,.8);
+      transition: background .2s, color .2s;
     }
     .social-link:hover { background: var(--green); }
     .footer-col h4 {
@@ -727,11 +820,7 @@
 <header>
   <nav>
     <a href="#" class="logo">
-      <div class="logo-icon">🌿</div>
-      <div class="logo-text">
-        <strong>Zebulli</strong>
-        <span>Wellness</span>
-      </div>
+      <img src="Images/black-logo.jpg" alt="Zebulli Wellness" class="logo-img">
     </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
@@ -753,11 +842,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-header">
     <div class="logo">
-      <div class="logo-icon">🌿</div>
-      <div class="logo-text">
-        <strong>Zebulli</strong>
-        <span>Wellness</span>
-      </div>
+      <img src="black-logo.jpg" alt="Zebulli Wellness" class="logo-img">
     </div>
     <button class="close-btn" onclick="closeMenu()" aria-label="Close menu">×</button>
   </div>
@@ -794,7 +879,25 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-graphic"></div>
+      <div class="hero-graphic">
+        <!-- fast orbit -->
+        <div class="nutra-orbit">
+          <span class="nutra-dot nutra-dot-lg"></span>
+          <span class="nutra-dot nutra-dot-lg"></span>
+          <span class="nutra-dot nutra-dot-lg"></span>
+        </div>
+        <!-- slow counter-orbit -->
+        <div class="nutra-orbit nutra-orbit-slow">
+          <span class="nutra-dot nutra-dot-sm"></span>
+          <span class="nutra-dot nutra-dot-sm"></span>
+          <span class="nutra-dot nutra-dot-sm"></span>
+        </div>
+        <!-- centre -->
+        <div class="nutra-center">
+          <div class="nutra-icon">🌿</div>
+          <div class="nutra-label">NUTRACEUTICAL</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -865,7 +968,7 @@
       <!-- Active Ortho + -->
       <div class="product-card fade-up">
         <div class="product-card-header">
-          <div class="product-emoji">🦴</div>
+         <img src="Images/active-ortho-plus.jpg" alt="Active Ortho+" class="product-img">
           <span class="product-badge">Joint Support</span>
           <h3 class="product-name">Active Ortho+</h3>
           <p class="product-tagline">Advanced Orthopaedic Support Formula</p>
@@ -890,7 +993,7 @@
       <!-- Active Flex+ -->
       <div class="product-card fade-up">
         <div class="product-card-header">
-          <div class="product-emoji">💪</div>
+          <img src="Images/active-flex-plus.jpg" alt="Active Flex+" class="product-img">
           <span class="product-badge">Flexibility</span>
           <h3 class="product-name">Active Flex+</h3>
           <p class="product-tagline">Complete Flexibility &amp; Bone Strength Formula</p>
@@ -915,7 +1018,7 @@
       <!-- Active Joint + -->
       <div class="product-card fade-up">
         <div class="product-card-header">
-          <div class="product-emoji">🔗</div>
+          <img src="Images/active-joint-plus.jpg" alt="Active Joint+" class="product-img">
           <span class="product-badge">Joint Health</span>
           <h3 class="product-name">Active Joint+</h3>
           <p class="product-tagline">Comprehensive Joint Wellness Formula</p>
@@ -940,7 +1043,7 @@
       <!-- Active Cal + D3 -->
       <div class="product-card fade-up">
         <div class="product-card-header">
-          <div class="product-emoji">☀️</div>
+          <img src="Images/active-cal-plus.jpg" alt="Active Cal+" class="product-img">
           <span class="product-badge">Bone Strength</span>
           <h3 class="product-name">Active Cal+D3</h3>
           <p class="product-tagline">Calcium &amp; Vitamin D3 Bone Health Formula</p>
@@ -965,7 +1068,7 @@
       <!-- Active Digestive + -->
       <div class="product-card fade-up">
         <div class="product-card-header">
-          <div class="product-emoji">🌿</div>
+         <img src="Images/active-digestive-plus.jpg" alt="Active Digestive+" class="product-img">
           <span class="product-badge">Digestive Health</span>
           <h3 class="product-name">Active Digestive+</h3>
           <p class="product-tagline">Natural Digestive Wellness Formula</p>
@@ -1126,11 +1229,24 @@
           </div>
         </div>
         <p class="footer-desc">
-          Your Partner in Healthy Living. Premium nutraceutical solutions crafted to support your joints, bones, and overall wellness.
+          10, Gajanand Complex, Nana Varachha Dhal, Varachha Main Road, Surat (Guj) -395013 zebulliwellness@gmail.com  </br> +91 8866257788
         </p>
         <div class="social-links">
-          <a href="https://instagram.com/zebulli_wellness_" target="_blank" rel="noopener" class="social-link" title="Instagram">📸</a>
-          <a href="https://facebook.com/zebulliwellness"    target="_blank" rel="noopener" class="social-link" title="Facebook">📘</a>
+          <a href="https://instagram.com/zebulli_wellness_" target="_blank" rel="noopener" class="social-link" title="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com/zebulliwellness" target="_blank" rel="noopener" class="social-link" title="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/918140362150" target="_blank" rel="noopener" class="social-link" title="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
         </div>
       </div>
 
@@ -1170,7 +1286,7 @@
 
     <div class="footer-bottom">
       <p>&copy; 2026 Zebulli Wellness. All rights reserved.</p>
-      <p>Premium Nutraceutical Range</p>
+      <p>Developed by Vihan Studio</p>
     </div>
   </div>
 </footer>
